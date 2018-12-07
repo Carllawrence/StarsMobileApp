@@ -100,6 +100,10 @@
                 <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
                   <div class="md-toolbar-tools">
                     <span>My Students</span>
+                    <md-button aria-label="logout" class="md-icon-button" ng-click="tutorStudent($event, 'data')">
+                        <ng-md-icon icon="lock_open"></ng-md-icon>
+                      </md-button>
+                
                     <div flex></div>
                     <md-button class="md-icon-button" ng-click="loadStuff()">
                       <ng-md-icon icon="refresh"></ng-md-icon>

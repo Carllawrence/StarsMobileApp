@@ -4,7 +4,7 @@
           <md-toolbar-filler layout="row" layout-align="left center">
   
             <md-button ng-click="cancel(color)" aria-label="Back">
-                <ng-md-icon icon="arrow_back"></ng-md-icon>
+                <ng-md-icon icon="arrow_back"></ng-md-icon> Back
             </md-button>
           </md-toolbar-filler>
       
@@ -14,16 +14,17 @@
       <md-card flex-xs layout="column">
           
         <md-card-title>
+                <md-card-title-media>
+                        <img ng-src="img/pic.png" class="md-card-image" alt="Student Picture">
+                    </md-card-title-media>
           <md-card-title-text>
             <span class="md-headline">{{student.firstname}}</span>
             <span class="md-subhead">{{student.lastname}}</span>
           </md-card-title-text>
-          <md-card-title-media>
-                <img ng-src="img/pic.png" class="md-card-image" alt="Student Picture">
-            </md-card-title-media>
+         
         </md-card-title>
-        <md-card-actions layout="row" layout-align="end center">
-        <md-slider-container>
+        <md-card-content>
+                <md-slider-container>
                 <span>A</span>
                 <md-slider min="0" max="10" ng-model="color.red" aria-label="red" id="red-slider"
                            class="md-warn">
@@ -52,8 +53,14 @@
                   <input type="number" ng-model="color.blue" aria-label="blue" aria-controls="blue-slider">
                 </md-input-container>
               </md-slider-container>
-              </md-card-actions>
-      </md-card> 
+
+              <p>
+                    <md-button class="md-raised md-primary" ng-click="submit(color)">Submit Tutor Session</md-button>
+
+              </p>
+        </md-card-content>      
+    
+    </md-card> 
 
 
 </md-dialog>

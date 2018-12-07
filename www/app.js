@@ -393,10 +393,8 @@ window.myvar = 'test';
     $scope.student = id;
     $scope.time = st;
 
-  $scope.cancel = function(color){
-    $scope.submit(color);
+  $scope.cancel = function(){
     $mdDialog.cancel();
-
   }
 
 $scope.submit = function(color){
@@ -409,6 +407,7 @@ $scope.submit = function(color){
   var Studata = $firebaseArray(ref);
 Studata.$add(newColor).then( function(){
   $scope.color = '';
+  $scope.cancel();
 });     
   
   }
