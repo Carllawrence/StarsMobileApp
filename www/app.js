@@ -398,9 +398,23 @@ window.myvar = 'test';
 
   }
 
-
+$scope.submit = function(color){
+  var newColor = {
+    math: color.red,
+    reading: color.blue
   }
+  var ref = firebase.database().ref('/students/-LBnJq348asrpMV0kAKi/data/');
+  var Studata = $firebaseArray(ref);
+Studata.$add(newColor).then( function(){
+  $scope.notifyToast('Session successfully added');
+
+  $scope.color = '';
+$scope.cancel();
+
+});     
   
+  }
+}
   });
 
   $scope.cancelSearch = function(){
