@@ -267,7 +267,7 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
 
   angular.element(document).ready(function () {
    
-
+window.myvar = 'test';
     var app = {
       // Application Constructor
       initialize: function() {
@@ -340,7 +340,7 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
                   "cancelled: " + result.cancelled + "\n");
               console.log(result);
 
-              window.myvar = result.text;
+              myvar = result.text;
               /*
               if (args.format == "QR_CODE") {
                   window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
@@ -351,6 +351,9 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
           }, function (error) { 
               console.log("Scanning failed: ", error); 
           } );
+
+          $scope.tutorStudent();  
+
       },
   
   
@@ -377,7 +380,6 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
       });
   };
 
-  $scope.tutorStudent($event, result);  
   
   function NewModalCtrl($scope, $mdDialog, id, st) {
 
