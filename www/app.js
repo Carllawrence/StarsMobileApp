@@ -24,13 +24,13 @@ app.run(["$rootScope", "$location", "$window", function($rootScope, $location, $
   });
 }]);
 
-app.factory("Students", ["$firebaseObject",
-  function($firebaseObject) {
+app.factory("Students", ["$firebaseArray",
+  function($firebaseArray) {
     // create a reference to the database location where we will store our data
-    var ref = firebase.database().ref('/students/-LBnJq348asrpMV0kAKi/');
+    var ref = firebase.database().ref('/students/-LBnJq348asrpMV0kAKi/data');
 
     // this uses AngularFire to create the synchronized array
-    return $firebaseObject(ref);
+    return $firebaseArray(ref);
   }
 ]);
 
@@ -393,24 +393,22 @@ window.myvar = 'test';
     $scope.student = id;
     $scope.time = st;
 
-  $scope.cancel = function(){
+  $scope.cancel = function(color){
+    $scope.submit(color);
     $mdDialog.cancel();
 
   }
 
 $scope.submit = function(color){
   var newColor = {
+    student: $scope.student.firstname,
     math: color.red,
     reading: color.blue
   }
   var ref = firebase.database().ref('/students/-LBnJq348asrpMV0kAKi/data/');
   var Studata = $firebaseArray(ref);
 Studata.$add(newColor).then( function(){
-  $scope.notifyToast('Session successfully added');
-
   $scope.color = '';
-$scope.cancel();
-
 });     
   
   }
@@ -442,12 +440,8 @@ $scope.cancel();
 
   $scope.students = Students;
 
-  Students.$bindTo($scope, "students").then(function() {
-    console.log($scope.students);
-    $scope.dataToast('Student Data Updated');
-  
-  });
-  var ArrayRef = firebase.database().ref('/students/-LBnJq348asrpMV0kAKi/data');
+
+  var ArrayRef = firebase.database().ref('/students/-LBnJq348asrpMV0kAKi/data/');
   var chartData = $firebaseArray(ArrayRef);
   chartData.$loaded()
     .then(function(x) {
@@ -462,9 +456,9 @@ $scope.cancel();
       $scope.series = [];
       $scope.dataOne = [];
       angular.forEach(chartData, function(value, key) {
-       $scope.labels.push(value.name);
+       $scope.labels.push(value.firstname);
        $scope.series.push(value.type);
-       $scope.dataOne.push(value.math.value);
+       $scope.dataOne.push(value.math);
     });
     });
 
@@ -544,7 +538,7 @@ $scope.options = {
 };
 
 $scope.query = {
-  order: 'name',
+  order: 'firstname',
   limit: 5,
   page: 1
 };
@@ -641,7 +635,7 @@ $scope.toggleLimitOptions = function () {
 };
 
 $scope.getTypes = function () {
-  return ['tutoring', 'testing', 'volunteering', 'teaching'];
+  return ['Tutoring', 'Counseling', 'Testing', 'Teaching'];
 };
 
 $scope.loadStuff = function () {
@@ -651,8 +645,8 @@ $scope.loadStuff = function () {
 };
 
 $scope.logItem = function (item) {
-  console.log(item.name, 'was selected');
-  $scope.whatSelected = item.name;
+  console.log(item.firstname, 'was selected');
+  $scope.whatSelected = item.firstname;
 };
 
 $scope.logOrder = function (order) {

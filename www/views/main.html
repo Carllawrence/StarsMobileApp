@@ -125,27 +125,13 @@
                         <th md-column md-order-by="type" md-desc>
                           <span>Type</span>
                         </th>
-                        <th md-column md-numeric md-order-by="session.value">
-                          <span>Session</span>
-                        </th>
-                        <th md-column md-numeric md-order-by="math.value">
+                                               <th md-column md-numeric md-order-by="math">
                           <span>Math</span>
                         </th>
-                        <th md-column md-numeric md-order-by="reading.value">
+                        <th md-column md-numeric md-order-by="reading">
                           <span>Reading</span>
                         </th>
-                        <th md-column md-numeric md-order-by="scoreOne.value">
-                          <span>MAT</span>
-                        </th>
-                        <th md-column md-numeric md-order-by="scoreTwo.value" hide-gt-xs show-gt-md>
-                          <span>ACT</span>
-                        </th>
-                        <th md-column md-numeric md-order-by="scoreThree.value" hide-gt-xs show-gt-lg>
-                          <span>SAT</span>
-                        </th>
-                        <th md-column md-numeric md-order-by="scoreFour.value" hide-gt-xs show-gt-lg>
-                          <span>SEL</span>
-                        </th>
+                      
                         <th md-column md-order-by="comment">
                           <span>Comments</span>
                         </th>
@@ -153,20 +139,16 @@
                     </thead>
                     <tbody md-body>
                       <tr md-row md-select="student" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="student.calories.value > 400"
-                        ng-repeat="student in students.data | filter: filter.search | filter:{type:stype} | filter:search |  orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-                        <td md-cell>{{student.name}}</td>
+                        ng-repeat="student in students | filter: filter.search | filter:{type:stype} | filter:search |  orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                        <td md-cell>{{student.firstname}}</td>
                         <td md-cell>
                           <md-select ng-model="student.type" placeholder="Other">
                             <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
                           </md-select>
                         </td>
-                        <td md-cell>{{student.session.value}}</td>
-                        <td md-cell>{{student.math.value | number: 2}}</td>
-                        <td md-cell>{{student.reading.value}}</td>
-                        <td md-cell>{{student.scoreOne.value | number: 2}}</td>
-                        <td md-cell hide-gt-xs show-gt-md>{{student.scoreTwo.value}}</td>
-                        <td md-cell hide-gt-xs show-gt-lg>{{student.scoreThree.value}}%</td>
-                        <td md-cell hide-gt-xs show-gt-lg>{{student.scoreFour.value}}%</td>
+                        <td md-cell>{{student.math | number: 2}}</td>
+                        <td md-cell>{{student.reading}}</td>
+                        
                         <td md-cell ng-click="editComment($event, student)" ng-class="{'md-placeholder': !student.comment}">
                           {{student.comment || 'Add a comment'}}
                         </td>
