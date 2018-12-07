@@ -455,7 +455,7 @@ Studata.$add(newColor).then( function(){
       $scope.series = [];
       $scope.dataOne = [];
       angular.forEach(chartData, function(value, key) {
-       $scope.labels.push(value.firstname);
+       $scope.labels.push(value.student);
        $scope.series.push(value.type);
        $scope.dataOne.push(value.math);
     });
@@ -537,7 +537,7 @@ $scope.options = {
 };
 
 $scope.query = {
-  order: 'firstname',
+  order: 'student',
   limit: 5,
   page: 1
 };
@@ -644,8 +644,8 @@ $scope.loadStuff = function () {
 };
 
 $scope.logItem = function (item) {
-  console.log(item.firstname, 'was selected');
-  $scope.whatSelected = item.firstname;
+  console.log(item.student, 'was selected');
+  $scope.whatSelected = item.student;
 };
 
 $scope.logOrder = function (order) {

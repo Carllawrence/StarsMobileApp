@@ -100,10 +100,7 @@
                 <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
                   <div class="md-toolbar-tools">
                     <span>My Students</span>
-                    <md-button aria-label="logout" class="md-icon-button" ng-click="tutorStudent($event, 'data')">
-                        <ng-md-icon icon="lock_open"></ng-md-icon>
-                      </md-button>
-                
+                                   
                     <div flex></div>
                     <md-button class="md-icon-button" ng-click="loadStuff()">
                       <ng-md-icon icon="refresh"></ng-md-icon>
@@ -144,7 +141,7 @@
                     <tbody md-body>
                       <tr md-row md-select="student" md-on-select="logItem" md-auto-select="options.autoSelect" ng-disabled="student.calories.value > 400"
                         ng-repeat="student in students | filter: filter.search | filter:{type:stype} | filter:search |  orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-                        <td md-cell>{{student.firstname}}</td>
+                        <td md-cell>{{student.student}}</td>
                         <td md-cell>
                           <md-select ng-model="student.type" placeholder="Other">
                             <md-option ng-value="type" ng-repeat="type in getTypes()">{{type}}</md-option>
