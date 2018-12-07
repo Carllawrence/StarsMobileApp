@@ -340,7 +340,7 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
                   "cancelled: " + result.cancelled + "\n");
               console.log(result);
 
-              alert(result.text);
+              window.myvar = result.text;
               /*
               if (args.format == "QR_CODE") {
                   window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
@@ -360,9 +360,9 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
 
   app.initialize();
 
-  $scope.tutorStudent = function (ev, id) {
+  $scope.tutorStudent = function (ev, myvar) {
     var starttime = firebase.database.ServerValue.TIMESTAMP;
-    $scope.interid = id;
+    $scope.interid = myvar;
     $mdDialog.show({
       locals: { id: $scope.interid, st: starttime },
       controller: NewModalCtrl,
