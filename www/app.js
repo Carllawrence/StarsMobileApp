@@ -317,7 +317,7 @@ window.myvar = 'test';
             
             $scope.scanID = result.text;
 
-            var ArrayRef = firebase.database().ref('/users/NIbUqIAK1aUPl7lzdQXHpxIC55U2');
+            var ArrayRef = firebase.database().ref('/users/'+ result.text);
             
             var studentData = $firebaseArray(ArrayRef);
             studentData.$loaded()
