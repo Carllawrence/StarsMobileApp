@@ -314,9 +314,21 @@ window.myvar = 'test';
   
           scanner.scan( function (result) { 
 
+            
             $scope.scanID = result.text;
+
+            var ArrayRef = firebase.database().ref('/users/NIbUqIAK1aUPl7lzdQXHpxIC55U2');
+            
+            var studentData = $firebaseArray(ArrayRef);
+            studentData.$loaded()
+              .then(function(x) {
+                $scope.dataToast('Chart Data Loaded', x);
+            })
+              .catch(function(error) {
+                console.log("Error:", error);
+              });
   
-            $scope.tutorStudent('test', result.text);  
+            $scope.tutorStudent('test', studentData);  
 
   
             obj.status = "STARTED";
@@ -429,7 +441,6 @@ window.myvar = 'test';
   
   });
   var ArrayRef = firebase.database().ref('/students/-LBnJq348asrpMV0kAKi/data');
-
   var chartData = $firebaseArray(ArrayRef);
   chartData.$loaded()
     .then(function(x) {
