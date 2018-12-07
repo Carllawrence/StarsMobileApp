@@ -340,7 +340,7 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
                   "cancelled: " + result.cancelled + "\n");
               console.log(result);
 
-              $scope.scanID = result.text;
+              alert(result.text);
               /*
               if (args.format == "QR_CODE") {
                   window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
@@ -384,7 +384,10 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
     $scope.student = id;
     $scope.time = st;
 
+  $scope.cancel = function(){
     $mdDialog.cancel();
+
+  }
 
 
   }
