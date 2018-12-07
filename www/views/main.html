@@ -1,6 +1,6 @@
 <div layout="column" class="relative" layout-fill role="main">
   <md-button class="md-fab md-fab-bottom-right" aria-label="Filter" id="scan" ng-show="!about">
-    <ng-md-icon icon="filter_list"></ng-md-icon>
+    <ng-md-icon icon="settings_overscan"></ng-md-icon>
   </md-button>
 
   <md-toolbar class="md-primary" ng-show="!showSearch">
@@ -27,20 +27,17 @@
 
     </div>
     <md-tabs md-stretch-tabs class="md-primary" md-selected="data.selectedIndex">
-        <md-tab id="tab1" aria-controls="tab1-content" md-on-select="about=1" md-on-deselect="about = null">
+        <md-tab id="tab1" aria-controls="tab1-content" >
             <small><strong>Dashboard</strong></small>
   
         </md-tab>
-      <md-tab id="tab2" aria-controls="tab2-content">
-          <small><strong>Tutors</strong></small> 
+      <md-tab id="tab2" aria-controls="tab2-content" md-on-select="about=1" md-on-deselect="about = null">
+          <small><strong>Students</strong></small> 
       </md-tab>
    
     
      
-      <md-tab id="tab4" aria-controls="tab4-content" md-on-select="about=1" md-on-deselect="about = null">
-          <small><strong>Locate</strong></small>
-
-      </md-tab>
+      
     </md-tabs>
   </md-toolbar>
   <md-toolbar class="md-primary" ng-show="showSearch">
@@ -96,27 +93,13 @@
           layout="row" layout-align="center center">
           <md-content layout="column" flex>
 
-              <md-card>
-                <md-card-actions layout="row" layout-align="end center">
-  
-                  <div layout="row" layout-wrap class="checkboxes">
-                    <md-checkbox ng-model="options.rowSelection">Row Selection</md-checkbox>
-                    <md-checkbox ng-model="options.multiSelect">Multiple Selection</md-checkbox>
-                    <md-checkbox ng-model="options.autoSelect">Auto Selection</md-checkbox>
-                    <md-checkbox ng-model="options.decapitate">No Header</md-checkbox>
-                    <md-checkbox ng-model="options.largeEditDialog">Lard Edit Dialogs</md-checkbox>
-                    <md-checkbox ng-model="options.boundaryLinks">Pagination Boundary Links</md-checkbox>
-                    <md-checkbox ng-model="options.limitSelect" ng-click="toggleLimitOptions()">Pagination Limit Select</md-checkbox>
-                    <md-checkbox ng-model="options.pageSelect">Pagination Page Select</md-checkbox>
-                  </div>
-                </md-card-actions>
-              </md-card>
+             
   
               <md-card>
   
                 <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
                   <div class="md-toolbar-tools">
-                    <span>Student Records</span>
+                    <span>My Students</span>
                     <div flex></div>
                     <md-button class="md-icon-button" ng-click="loadStuff()">
                       <ng-md-icon icon="refresh"></ng-md-icon>
@@ -220,10 +203,7 @@
                 </canvas>
                 <p>
                    Effectiveness Metric: the degree to which the tutor successful conducted tutoring e.g., Number of contact hours.
-                   {{scanID}}
-                   <md-button ng-click="tutorStudent($event, 'testing')" class="md-fab md-mini  md-info" aria-label="edit">
-                    <ng-md-icon icon="edit"></ng-md-icon>
-                  </md-button>
+                   
 
                 </p>
               </md-card-content>
@@ -268,33 +248,6 @@
 
       </ng-switch>
 
-      <ng-switch on="data.selectedIndex" class="tabpanel-container">
-        <div role="tabpanel" id="tab4-content" aria-labelledby="tab4" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()"
-          layout="row" layout-align="left center">
-
-
-          <md-content layout="column" >
-
-            <md-card>
-              <md-card-actions layout="row" layout-align="left center">
-
-                <div layout="row" layout-wrap class="checkboxes">
-                  <md-checkbox ng-model="options.boundaryLinks" ng-click="getSchoolDist()">School Districts</md-checkbox>
-                </div>
-              </md-card-actions>
-            </md-card>
-
-            <md-card>
-
-              testing
-
-            </md-card>
-          </md-content>
-
-        </div>
-
-
-      </ng-switch>
     </ui-view>
   </md-content>
 </div>

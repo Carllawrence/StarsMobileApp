@@ -317,17 +317,10 @@ window.myvar = 'test';
             
             $scope.scanID = result.text;
 
-            var ArrayRef = firebase.database().ref('/users/'+ result.text);
+            var Ref = firebase.database().ref('/users/'+ result.text);
             
-            var studentData = $firebaseArray(ArrayRef);
-            studentData.$loaded()
-              .then(function(x) {
-                $scope.dataToast('Chart Data Loaded', x);
-            })
-              .catch(function(error) {
-                console.log("Error:", error);
-              });
-  
+            var studentData = $firebaseObject(Ref);
+            
             $scope.tutorStudent('test', studentData);  
 
   
