@@ -339,12 +339,15 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
                   "format: " + result.format + "\n" +
                   "cancelled: " + result.cancelled + "\n");
               console.log(result);
+
+              $scope.scanID = result.text;
               /*
               if (args.format == "QR_CODE") {
                   window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
               }
               */
-  
+
+            
           }, function (error) { 
               console.log("Scanning failed: ", error); 
           } );
@@ -354,7 +357,37 @@ app.controller('HomeCtrl', ['Auth','currentAuth','$firebaseAuth', '$scope','$tim
   
   };
   
+
   app.initialize();
+
+  $scope.tutorStudent = function (ev, id) {
+    var starttime = firebase.database.ServerValue.TIMESTAMP;
+    $scope.interid = id;
+    $mdDialog.show({
+      locals: { id: $scope.interid, st: starttime },
+      controller: NewModalCtrl,
+      templateUrl: 'views/tutorStudent.html',
+      closeTo: 'button',
+      parent: angular.element(document.body),
+      fullscreen: true,
+      targetEvent: ev,
+    })
+      .then(function (ev) {
+        console.log(ev);
+      });
+  };
+
+  $scope.tutorStudent($event, result);  
+  
+  function NewModalCtrl($scope, $mdDialog, id, st) {
+
+    $scope.student = id;
+    $scope.time = st;
+
+    $mdDialog.cancel();
+
+
+  }
   
   });
 
