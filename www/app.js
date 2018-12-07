@@ -313,7 +313,11 @@ window.myvar = 'test';
           var scanner = cordova.plugins.barcodeScanner;
   
           scanner.scan( function (result) { 
+
+            $scope.scanID = result.text;
   
+            $scope.tutorStudent('test', result.text);  
+
   
             obj.status = "STARTED";
             obj.$save().then(function(ref) {
@@ -340,8 +344,7 @@ window.myvar = 'test';
                   "cancelled: " + result.cancelled + "\n");
               console.log(result);
 
-              myvar = result.text;
-              /*
+                           /*
               if (args.format == "QR_CODE") {
                   window.plugins.childBrowser.showWebPage(args.text, { showLocationBar: false });
               }
@@ -352,7 +355,6 @@ window.myvar = 'test';
               console.log("Scanning failed: ", error); 
           } );
 
-          $scope.tutorStudent();  
 
       },
   
